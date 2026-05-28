@@ -1,91 +1,89 @@
+```json id="g7n2pk"
 {
   "info": {
-    "_postman_id": "0b0ec3af-4648-4787-bb76-bfaa0b5f3279",
-    "name": "Multi-Source Data Aggregator API Collection",
+    "_postman_id": "8a4b1d90-2c55-4d87-a2b1-ef903a2c9f77",
+    "name": "User Dashboard API Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "47667700",
-    "_collection_link": "https://go.postman.co/collection/47667700-0b0ec3af-4648-4787-bb76-bfaa0b5f3279?source=collection_link"
+    "_collection_link": "https://go.postman.co/workspace/My-Workspace~12345678-1234-1234-1234-123456789abc/collection/47667700-user-dashboard-api"
   },
   "item": [
     {
-      "name": "GET User API",
+      "name": "Fetch User Details",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/users/1",
+          "raw": "http://localhost:4000/users/101",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "3000",
+          "port": "4000",
           "path": [
-            "api",
             "users",
-            "1"
+            "101"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "GET User Posts API",
+      "name": "Fetch User Orders",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/users/1/posts",
+          "raw": "http://localhost:4000/users/101/orders",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "3000",
+          "port": "4000",
           "path": [
-            "api",
             "users",
-            "1",
-            "posts"
+            "101",
+            "orders"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "GET Recommendations API",
+      "name": "Fetch Trending Products",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/recommendations",
+          "raw": "http://localhost:4000/products/trending",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "3000",
+          "port": "4000",
           "path": [
-            "api",
-            "recommendations"
+            "products",
+            "trending"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "GET Aggregate API",
+      "name": "Fetch Combined Dashboard",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/aggregate/1",
+          "raw": "http://localhost:4000/dashboard/101",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "3000",
+          "port": "4000",
           "path": [
-            "api",
-            "aggregate",
-            "1"
+            "dashboard",
+            "101"
           ]
         }
       },
@@ -93,3 +91,4 @@
     }
   ]
 }
+```
