@@ -1,10 +1,14 @@
 import express from "express";
 
-import { aggregateUserData }
-from "../controllers/aggregatorController.js";
+import {
+    getDashboardData
+} from "../controllers/dashboardController.js";
 
-const router = express.Router();
+const appRouter = express.Router();
 
-router.get("/aggregate/:id", aggregateUserData);
+appRouter.get(
+    "/dashboard/:id",
+    getDashboardData
+);
 
-export default router;
+export default appRouter;
