@@ -1,19 +1,37 @@
+```js id="x8pl3d"
 import express from "express";
 
-import aggregatorRoutes from "./routes/aggregatorRoutes.js";
-import mockApiRoutes from "./routes/mockApiRoutes.js";
+import dashboardRoutes
+from "./routes/dashboardRoutes.js";
 
-const app = express();
+import serviceRoutes
+from "./routes/serviceRoutes.js";
 
-app.use(express.json());
+const server = express();
 
-app.use("/api", aggregatorRoutes);
+server.use(express.json());
 
-// Mock APIs
-app.use("/api", mockApiRoutes);
 
-const PORT = 3000;
+// Dashboard APIs
+server.use(
+    "/services",
+    dashboardRoutes
+);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+
+// Mock Service APIs
+server.use(
+    "/services",
+    serviceRoutes
+);
+
+
+const APP_PORT = 4000;
+
+server.listen(APP_PORT, () => {
+
+    console.log(
+        `Application started on port ${APP_PORT}`
+    );
 });
+```
