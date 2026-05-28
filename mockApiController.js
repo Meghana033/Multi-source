@@ -1,60 +1,60 @@
-// Mock API 1
-export const getUser = async (req, res) => {
+// Service API 1
+export const fetchProfile = async (req, res) => {
 
-    const userId = req.params.id;
+    const profileId = req.params.id;
 
     setTimeout(() => {
 
         res.json({
-            user_id: userId,
-            first_name: "Suneetha",
-            last_name: "Vemagiri",
-            email_address: "suneetha@gmail.com"
+            profile_id: profileId,
+            first_name: "Meghana",
+            last_name: "Sri",
+            email_id: "meghana@gmail.com"
         });
 
-    }, 2000);
+    }, 1500);
 };
 
 
-// Mock API 2
-export const getUserPosts = async (req, res) => {
+// Service API 2
+export const fetchOrders = async (req, res) => {
 
-    const userId = req.params.id;
+    const profileId = req.params.id;
 
     setTimeout(() => {
 
         res.json([
             {
-                post_id: 1,
-                post_title: "JavaScript Async Programming",
-                created_by: userId
+                order_id: 201,
+                product_name: "Wireless Headphones",
+                ordered_by: profileId
             },
             {
-                post_id: 2,
-                post_title: "Understanding MVC Architecture",
-                created_by: userId
+                order_id: 202,
+                product_name: "Gaming Keyboard",
+                ordered_by: profileId
             }
         ]);
 
-    }, 3000);
+    }, 2500);
 };
 
 
-// Mock API 3
-export const getRecommendations = async (req, res) => {
+// Service API 3
+export const fetchTrendingProducts = async (req, res) => {
 
     setTimeout(() => {
 
         res.json([
             {
-                item_id: 101,
-                item_name: "Node.js Complete Guide"
+                product_id: 501,
+                product_title: "React.js Advanced Guide"
             },
             {
-                item_id: 102,
-                item_name: "Express.js Mastery"
+                product_id: 502,
+                product_title: "Node.js API Development"
             }
         ]);
 
-    }, 1000);
+    }, 1200);
 };
