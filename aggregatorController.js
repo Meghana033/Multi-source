@@ -1,25 +1,27 @@
-import { getCompleteUserProfile }
-from "../services/aggregatorService.js";
+```js id="c8mz1q"
+import { fetchUserDashboard }
+from "../services/dashboardService.js";
 
-export const aggregateUserData = async (req, res) => {
+export const getDashboardData = async (req, res) => {
 
     try {
 
-        const userId = req.params.id;
+        const profileId = req.params.id;
 
-        const result =
-            await getCompleteUserProfile(userId);
+        const dashboardData =
+            await fetchUserDashboard(profileId);
 
-        res.status(200).json({
-            success: true,
-            data: result
+        return res.status(200).json({
+            status: "success",
+            result: dashboardData
         });
 
-    } catch (error) {
+    } catch (err) {
 
-        res.status(500).json({
-            success: false,
-            message: error.message
+        return res.status(500).json({
+            status: "failed",
+            error: err.message
         });
     }
 };
+```
