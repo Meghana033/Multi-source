@@ -1,23 +1,23 @@
 {
-  "name": "multi-source-data-aggregator",
+  "name": "dashboard-service-app",
   "version": "1.0.0",
-  "description": "Assignment 2 - Multi Source Data Aggregator using MVC Architecture",
-  "main": "app.js",
+  "description": "Assignment 2 - Dashboard Service API using MVC Pattern",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "node app.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "keywords": [
-    "mvc",
+    "dashboard",
     "nodejs",
     "express",
-    "api",
-    "aggregator"
+    "services",
+    "mvc"
   ],
-  "author": "Suneetha",
-  "license": "ISC",
+  "author": "Meghana",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.22.2"
   }
 }
