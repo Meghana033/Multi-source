@@ -1,14 +1,21 @@
-export const withTimeout = (promise, ms) => {
+export const requestWithTimeout = (
+    apiPromise,
+    delay
+) => {
 
     return Promise.race([
 
-        promise,
+        apiPromise,
 
-        new Promise((_, reject) =>
-            setTimeout(() =>
-                reject(new Error("Request Timeout")),
-                ms
-            )
-        )
+        new Promise((_, reject) => {
+
+            setTimeout(() => {
+
+                reject(
+                    new Error("API Request Failed")
+                );
+
+            }, delay);
+        })
     ]);
 };
