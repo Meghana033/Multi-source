@@ -1,67 +1,78 @@
-import { withTimeout }
-from "../utils/timeout.js";
+```js id="h2qn7m"
+import { requestWithTimeout }
+from "../helpers/requestTimeout.js";
 
-import { convertKeysToCamelCase }
-from "../utils/transform.js";
+import { formatKeysToCamelCase }
+from "../helpers/formatResponse.js";
 
-const BASE_URL = "http://localhost:3000/api";
+const API_BASE =
+    "http://localhost:4000/services";
 
 
-// Helper Function
-const fetchData = async (url) => {
+// Reusable API Fetcher
+const getApiData = async (endpoint) => {
 
-    const response = await withTimeout(
-        fetch(url),
-        5000
+    const apiResponse = await requestWithTimeout(
+        fetch(endpoint),
+        4000
     );
 
-    return response.json();
+    return apiResponse.json();
 };
 
 
-export const getCompleteUserProfile = async (userId) => {
+export const fetchUserDashboard = async (profileId) => {
 
-    // STEP 1 → Fetch User First
-    const user =
-        await fetchData(`${BASE_URL}/users/${userId}`);
+    // STEP 1 → Load Profile Data
+    const profileData =
+        await getApiData(
+            `${API_BASE}/profiles/${profileId}`
+        );
 
 
-    // STEP 2 → Parallel Calls
-    const results = await Promise.allSettled([
+    // STEP 2 → Run APIs Together
+    const apiResults = await Promise.allSettled([
 
-        fetchData(`${BASE_URL}/users/${userId}/posts`),
+        getApiData(
+            `${API_BASE}/profiles/${profileId}/orders`
+        ),
 
-        fetchData(`${BASE_URL}/recommendations`)
+        getApiData(
+            `${API_BASE}/products/trending`
+        )
     ]);
 
 
-    let posts = [];
-    let recommendations = [];
+    let orders = [];
+    let trendingProducts = [];
 
 
-    // Posts
-    if (results[0].status === "fulfilled") {
+    // Orders API
+    if (apiResults[0].status === "fulfilled") {
 
-        posts = results[0].value;
+        orders = apiResults[0].value;
     }
 
 
-    // Recommendations
-    if (results[1].status === "fulfilled") {
+    // Trending Products API
+    if (apiResults[1].status === "fulfilled") {
 
-        recommendations = results[1].value;
+        trendingProducts = apiResults[1].value;
     }
 
 
-    // Combined Object
-    const finalData = {
+    // Final Response Object
+    const responsePayload = {
 
-        user,
-        posts,
-        recommendations
+        profile: profileData,
+        orders,
+        trendingProducts
     };
 
 
-    // snake_case → camelCase
-    return convertKeysToCamelCase(finalData);
+    // Convert Keys
+    return formatKeysToCamelCase(
+        responsePayload
+    );
 };
+```
