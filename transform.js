@@ -1,35 +1,46 @@
-const toCamelCase = (str) => {
+const formatKeyName = (value) => {
 
-    return str.replace(/_([a-z])/g,
-        (_, char) => char.toUpperCase()
+    return value.replace(
+        /_([a-z])/g,
+        (_, letter) => letter.toUpperCase()
     );
 };
 
 
-export const convertKeysToCamelCase = (obj) => {
+export const formatKeysToCamelCase = (data) => {
 
-    if (Array.isArray(obj)) {
+    // Handle Arrays
+    if (Array.isArray(data)) {
 
-        return obj.map(item =>
-            convertKeysToCamelCase(item)
+        return data.map((element) =>
+            formatKeysToCamelCase(element)
         );
     }
 
-    else if (
-        obj !== null &&
-        typeof obj === "object"
+
+    // Handle Objects
+    if (
+        data &&
+        typeof data === "object"
     ) {
 
-        const newObj = {};
+        const formattedObject = {};
 
-        for (let key in obj) {
+        Object.keys(data).forEach((field) => {
 
-            newObj[toCamelCase(key)] =
-                convertKeysToCamelCase(obj[key]);
-        }
+            const updatedKey =
+                formatKeyName(field);
 
-        return newObj;
+            formattedObject[updatedKey] =
+                formatKeysToCamelCase(
+                    data[field]
+                );
+        });
+
+        return formattedObject;
     }
 
-    return obj;
+
+    // Primitive Values
+    return data;
 };
